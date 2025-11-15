@@ -21,7 +21,7 @@ public class Program {
 		System.out.println(seller);
 
 		System.out.println("\n=== TEST 2: findByDepartment ===");
-		Department department = new Department(2, null);
+		Department department = new Department(3, null);
 		List<Seller> list = sellerDAO.findByDepartment(department);
 		
 		for(Seller obj : list) {
@@ -35,11 +35,17 @@ public class Program {
 			System.out.println(obj);
 		}
 		
-		System.out.println("\n=== TEST 4: insert ===");
-		Seller newSeller = new Seller(null, "Penny Miranda", "penny@gmail.com", new Date(), 4000.0, department);
-		sellerDAO.insert(newSeller);
-		System.out.println("Inserted! New Id = " + newSeller.getId());
+//		System.out.println("\n=== TEST 4: insert ===");
+//		Seller newSeller = new Seller(null, "Penny Miranda", "penny@gmail.com", new Date(), 4000.0, department);
+//		sellerDAO.insert(newSeller);
+//		System.out.println("Inserted! New Id = " + newSeller.getId());
 		
+		
+		System.out.println("\n=== TEST 5: update ===");
+		seller = sellerDAO.findById(6);
+		seller.setDepartment(department);
+		sellerDAO.update(seller);
+		System.out.println("Update completed!");
 		
 	}
 
