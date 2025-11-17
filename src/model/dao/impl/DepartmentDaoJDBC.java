@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
 import db.DbException;
+import model.dao.DaoFactory;
 import model.dao.DepartmentDAO;
 import model.entities.Department;
 
@@ -16,7 +16,7 @@ public class DepartmentDaoJDBC implements DepartmentDAO{
 	
 	private Connection conn;
 	
-	public DepartmentDaoJDBC(Connection conn) {
+	public DepartmentDaoJDBC (Connection conn) {
 		this.conn = conn;
 	}
 
@@ -46,11 +46,13 @@ public class DepartmentDaoJDBC implements DepartmentDAO{
 			st = conn.prepareStatement(
 					"select department.*, department.Name as DepName "
 					+ "from department where department.Id = ?");
+			
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			
-			if (rs.next()) {
+			if(rs.next()) {
 				Department obj = new Department();
+				
 				obj.setId(rs.getInt("Id"));
 				obj.setName(rs.getString("Name"));
 				return obj;
@@ -65,33 +67,14 @@ public class DepartmentDaoJDBC implements DepartmentDAO{
 			DB.closeResultSet(rs);
 		}
 		
+	
 	}
 
 	@Override
 	public List<Department> findAll() {
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		 try {
-			 st = conn.prepareStatement("SELECT * FROM department");
-			 rs = st.executeQuery();
-			 
-			 List<Department> list = new ArrayList<Department>();
-	
-			 while(rs.next()) {
-				 Department obj = new Department();
-				 obj.setId(rs.getInt("Id"));
-				 obj.setName(rs.getString("Name"));
-				 list.add(obj);
-			 }
-			 return list;
-		 }
-		 catch (SQLException e) {
-			 throw new DbException(e.getMessage());
-		}
-		finally {
-				DB.closeStatment(st);
-				DB.closeResultSet(rs);
-		}
+		// TODO Auto-generated method stub
+		return null;
+		
 
 		
 	}
