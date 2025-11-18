@@ -22,10 +22,16 @@ public class Program2 {
 				System.out.println(d);
 			}
 		
-		System.out.println("\n=== Test 3: Department insert ===");
-		Department newDepartment = new Department(null, "Toys");
-		departmentDAO.insert(newDepartment);
-		System.out.println("Inserted! New Id = " + newDepartment.getId());
+//		System.out.println("\n=== Test 3: Department insert ===");
+//		Department newDepartment = new Department(null, "Tools");
+//		departmentDAO.insert(newDepartment);
+//		System.out.println("Inserted! New Id = " + newDepartment.getId());
+			
+		System.out.println("\n=== Test 4: Department update ===");
+		Department dep2 = departmentDAO.findById(8);
+		dep2.setName("Food");
+		departmentDAO.update(dep2);
+		System.out.println("Update completed!");
 			
 	}
 
